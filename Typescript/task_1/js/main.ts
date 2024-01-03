@@ -1,3 +1,4 @@
+// Task 1
 interface Teacher {
 	readonly firstName: string,
 	readonly lastName: string,
@@ -7,7 +8,6 @@ interface Teacher {
 	[propName: string]: any
 }
 
-// Task 1
 const teacher3: Teacher = {
   firstName: 'John',
   fullTimeEmployee: false,
@@ -26,11 +26,11 @@ console.log(teacher3);
 // lastName: "Doe"
 // location: "London"
 
+// Task 2
 interface Directors extends Teacher {
 	numberOfReports: number
 }
 
-// Task 2
 const director1: Directors = {
   firstName: 'John',
   lastName: 'Doe',
@@ -48,3 +48,14 @@ console.log(director1);
 // location: "London"
 // numberOfReports: 17
 
+// Task 3
+interface printTeacherFunction {
+	(firstName: string, lastName: string): string
+}
+
+const printTeacher: printTeacherFunction = (firstName, lastName) => {
+	return `${firstName[0]}. ${lastName}`
+}
+
+console.log(printTeacher("John", "Doe"))
+// should print J. Doe
