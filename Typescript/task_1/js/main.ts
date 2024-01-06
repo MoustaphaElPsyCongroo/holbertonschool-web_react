@@ -59,3 +59,38 @@ const printTeacher: printTeacherFunction = (firstName, lastName) => {
 
 console.log(printTeacher("John", "Doe"))
 // should print J. Doe
+
+//Task 4
+interface StudentClassConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface
+}
+
+interface StudentClassInterface {
+  workOnHomework(): string,
+  displayName(): string
+}
+
+
+const StudentClass: StudentClassConstructor = class StudentClass implements StudentClass {
+  firstName: string;
+  lastName: string;
+  // if firstName: number, Typescript will throw a warning thanks to the typed
+  // class expression
+
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  workOnHomework() {
+    return 'Currently working'
+  }
+
+  displayName() {
+    return this.firstName;
+  }
+}
+
+// Should print Harry
+const s = new StudentClass('Harry', 'Potter')
+console.log(s.displayName())
