@@ -6,9 +6,7 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    header: './modules/header/header.js',
-    body: './modules/body/body.js',
-    footer: './modules/footer/footer.js'
+    all: ['./modules/header/header.js', './modules/body/body.js', './modules/footer/footer.js'],
   },
   output: {
     filename: '[name].bundle.js',
@@ -16,6 +14,7 @@ module.exports = {
   },
   devServer: {
     port: 8564,
+    contentBase: './public',
     open: true
   },
   plugins: [new HtmlWebpackPlugin(), new CleanWebpackPlugin()],
