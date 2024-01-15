@@ -2,3 +2,15 @@
   border: 1px black solid;
   padding: 10px;
 }
+
+[data-priority="default"] {
+  color: darkblue;
+}
+
+[data-priority="urgent"] {
+  color: red;
+}
+
+.latest-notification {
+  color: red;
+}
