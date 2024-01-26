@@ -11,7 +11,7 @@ import CourseList from "../CourseList/CourseList";
 
 describe("<App />", () => {
   beforeEach(() => {
-    window.alert = jest.fn();
+    jest.spyOn(window, 'alert').mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -58,13 +58,12 @@ describe("<App />", () => {
   it("calls the logOut function and displays an alert on ctrl + h", () => {
     const logOut = jest.fn();
     const app = mount(<App logOut={logOut} />);
-    const alertSpy = jest.spyOn(window, "alert");
     const keyboardDownEvent = new KeyboardEvent("keydown", {
       code: "KeyH",
       ctrlKey: true,
     });
     window.dispatchEvent(keyboardDownEvent);
-    expect(alertSpy).toHaveBeenCalledWith('Logging you out');
+    expect(window.alert).toHaveBeenCalledWith('Logging you out');
     expect(logOut).toHaveBeenCalledTimes(1);
 
     app.unmount();
