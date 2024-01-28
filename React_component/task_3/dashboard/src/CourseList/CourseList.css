@@ -1,0 +1,17 @@
+#CourseList {
+  width: 100%;
+}
+
+table,
+th {
+  border: 1px solid;
+  padding: 10px;
+}
+
+td {
+  padding: 3px;
+}
+
+table {
+  border-collapse: collapse;
+}
