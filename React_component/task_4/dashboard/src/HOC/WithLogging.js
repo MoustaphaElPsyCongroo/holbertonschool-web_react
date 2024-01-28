@@ -1,6 +1,6 @@
 import React from "react";
 
-function withLogging(WrappedComponent) {
+function WithLogging(WrappedComponent) {
   class WithLogging extends React.Component {
     componentDidMount() {
       console.log(`Component ${getDisplayName(WrappedComponent)} is mounted`);
@@ -10,6 +10,10 @@ function withLogging(WrappedComponent) {
       console.log(
         `Component ${getDisplayName(WrappedComponent)} is going to unmount`
       );
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} />;
     }
   }
 
@@ -22,4 +26,4 @@ function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || "Component";
 }
 
-export default withLogging;
+export default WithLogging;
