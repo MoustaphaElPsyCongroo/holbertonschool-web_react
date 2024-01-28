@@ -1,0 +1,11 @@
+[data-priority="default"] {
+  color: darkblue;
+}
+
+[data-priority="urgent"] {
+  color: red;
+}
+
+.latest-notification {
+  color: red !important;
+}
