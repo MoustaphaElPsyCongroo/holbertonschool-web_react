@@ -1,3 +1,5 @@
+import { StyleSheet } from "aphrodite";
+
 function Login() {
   return (
     <>
@@ -12,5 +14,9 @@ function Login() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  margin: 0,
+});
 
 export default Login;

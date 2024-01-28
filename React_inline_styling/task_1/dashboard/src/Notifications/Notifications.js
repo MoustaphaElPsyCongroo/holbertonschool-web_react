@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     width: "37%",
     fontSize: "1.1rem",
   },
+
   menuItem: {
     position: "absolute",
     right: "5px",
