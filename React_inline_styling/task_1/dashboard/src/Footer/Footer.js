@@ -1,9 +1,10 @@
-import { getFullYear, getFooterCopy } from '../utils/utils';
-import './Footer.css';
+import { getFullYear, getFooterCopy } from "../utils/utils";
 
 function Footer() {
   return (
-    <p>Copyright {getFullYear()} - {getFooterCopy(true)}</p>
+    <p>
+      Copyright {getFullYear()} - {getFooterCopy(true)}
+    </p>
   );
 }
 

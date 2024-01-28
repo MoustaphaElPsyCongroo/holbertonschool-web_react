@@ -47,10 +47,8 @@ class App extends React.Component {
     return (
       <>
         <Notifications listNotifications={listNotifications} />
-        <header className={css(styles.appHeader)}>
-          <Header />
-        </header>
-        <div className={css(styles.appBody)}>
+        <Header />
+        <div className={css(styles.body)}>
           {isLoggedIn ? (
             <BodySectionWithMarginBottom title="Course list">
               <CourseList listCourses={listCourses} />
@@ -64,7 +62,7 @@ class App extends React.Component {
             <p>Here are some fresh news.</p>
           </BodySection>
         </div>
-        <footer className="App-footer">
+        <footer className={css(styles.footer)}>
           <Footer />
         </footer>
       </>
@@ -83,21 +81,18 @@ App.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  appHeader: {
-    display: "flex",
-    alignItems: "center",
-    color: "#dc3749",
-    fontWeight: "bold",
-    fontFamily: "sans-serif",
-    borderBottom: "4px #dc3749 solid",
-  },
-  appBody: {
+  body: {
     fontFamily: "sans-serif",
     fontWeight: "normal",
     paddingTop: "3rem",
     paddingLeft: "3rem",
     paddingBottom: "53%",
     borderBottom: "4px #dc3749 solid",
+  },
+  footer: {
+    textAlign: "center",
+    fontStyle: "italic",
+    fontFamily: "sans-serif",
   },
 });
 
