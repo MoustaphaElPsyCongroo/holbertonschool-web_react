@@ -8,6 +8,12 @@ import NotificationItemShape from "./NotificationItemShape";
 class Notifications extends React.Component {
   markAsRead = (id) => {
     console.log(`Notification ${id} has been marked as read`);
+  };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.listNotifications.length > this.props.listNotifications.length
+    );
   }
 
   render() {
