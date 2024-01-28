@@ -15,4 +15,14 @@ class BodySection extends React.Component {
   }
 }
 
+BodySection.defaultProps = {
+  title: "",
+  children: undefined,
+};
+
+BodySection.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node,
+};
+
 export default BodySection;
