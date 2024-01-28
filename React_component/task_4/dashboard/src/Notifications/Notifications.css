@@ -1,0 +1,27 @@
+.menuItem {
+  position: absolute;
+  right: 5px;
+  font-size: 1.2rem;
+}
+
+.Notifications {
+  border: 2px red dotted;
+  padding: 3px 10px;
+  position: absolute;
+  right: 5px;
+  top: 2em;
+  width: 37%;
+  font-size: 1.1rem;
+}
+
+[data-priority="default"] {
+  color: darkblue;
+}
+
+[data-priority="urgent"] {
+  color: red;
+}
+
+.latest-notification {
+  color: red !important;
+}
