@@ -1,13 +1,12 @@
-import { shallow } from 'enzyme';
-import Notifications from './Notifications';
-import NotificationItem from './NotificationItem';
+import { shallow } from "enzyme";
+import Notifications from "./Notifications";
 
-describe('<Notifications />', () => {
-  it('renders without crashing', () => {
+describe("<Notifications />", () => {
+  it("renders without crashing", () => {
     shallow(<Notifications />);
   });
 
-  describe('When displayDrawer prop true', () => {
+  describe("When displayDrawer prop true", () => {
     let notifications;
 
     beforeEach(() => {
@@ -22,8 +21,10 @@ describe('<Notifications />', () => {
     //   expect(notifications.find(NotificationItem)).toHaveLength(3);
     // });
 
-    it('renders the correct text', () => {
-      expect(notifications.find('p').text()).toBe('No new notification for now');
+    it("renders the correct text", () => {
+      expect(notifications.find("p").text()).toBe(
+        "No new notification for now"
+      );
     });
 
     // it('its first NotificationItem element renders the right html', () => {
@@ -31,16 +32,16 @@ describe('<Notifications />', () => {
     //   expect(notifications.find(NotificationItem).first().html()).toMatch(/New course available/);
     // });
 
-    it('renders a menuItem', () => {
-      expect(notifications.find('.menuItem')).toHaveLength(1);
+    it("renders a menuItem", () => {
+      expect(notifications.find(".menuItem")).toHaveLength(1);
     });
 
-    it('renders a div.Notifications', () => {
-      expect(notifications.find('.Notifications')).toHaveLength(1);
+    it("renders a div.Notifications", () => {
+      expect(notifications.find(".Notifications")).toHaveLength(1);
     });
   });
 
-  describe('When displayDrawer prop false (default)', () => {
+  describe("When displayDrawer prop false (default)", () => {
     let notifications;
 
     beforeEach(() => {
@@ -51,32 +52,38 @@ describe('<Notifications />', () => {
       notifications = null;
     });
 
-    it('renders a menuItem', () => {
-      expect(notifications.find('.menuItem')).toHaveLength(1);
+    it("renders a menuItem", () => {
+      expect(notifications.find(".menuItem")).toHaveLength(1);
     });
 
     it("doesn't render a div.Notifications", () => {
-      expect(notifications.find('.Notifications')).toHaveLength(0);
+      expect(notifications.find(".Notifications")).toHaveLength(0);
     });
-  })
+  });
 
-  describe('When listNotifications prop null or empty', () => {
+  describe("When listNotifications prop null or empty", () => {
     let notificationsNull;
     let notificationsEmpty;
 
     beforeEach(() => {
       notificationsNull = shallow(<Notifications displayDrawer={true} />);
-      notificationsEmpty = shallow(<Notifications displayDrawer={true} listNotifications={[]} />);
-    })
-    it('renders correctly', () => {
-      expect(notificationsNull.find('p').text()).toBe('No new notification for now');
-      expect(notificationsEmpty.find('p').text()).toBe('No new notification for now');
+      notificationsEmpty = shallow(
+        <Notifications displayDrawer={true} listNotifications={[]} />
+      );
     });
-  })
+    it("renders correctly", () => {
+      expect(notificationsNull.find("p").text()).toBe(
+        "No new notification for now"
+      );
+      expect(notificationsEmpty.find("p").text()).toBe(
+        "No new notification for now"
+      );
+    });
+  });
 
-  describe('markAsRead() method', () => {
+  describe("markAsRead() method", () => {
     beforeEach(() => {
-      jest.spyOn(console, 'log').mockImplementation(() => {});
+      jest.spyOn(console, "log").mockImplementation(() => {});
     });
 
     afterEach(() => {
@@ -84,10 +91,42 @@ describe('<Notifications />', () => {
       jest.restoreAllMocks();
     });
 
-    it('calls console.log with the right message', () => {
+    it("calls console.log with the right message", () => {
       const notifications = shallow(<Notifications />);
       notifications.instance().markAsRead(1);
-      expect(console.log).toHaveBeenCalledWith('Notification 1 has been marked as read');
+      expect(console.log).toHaveBeenCalledWith(
+        "Notification 1 has been marked as read"
+      );
     });
-  })
+  });
+
+  describe("shouldComponentUpdate cycle", () => {
+    let notifications;
+
+    beforeEach(() => {
+      jest.spyOn(Notifications.prototype, "shouldComponentUpdate");
+      notifications = shallow(<Notifications listNotifications={[]} />);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+      jest.restoreAllMocks();
+    });
+
+    it("should not rerender when updating listNotifications prop with the same list", () => {
+      notifications.setProps({ listNotifications: [] });
+      expect(Notifications.prototype.shouldComponentUpdate).toHaveReturnedWith(
+        false
+      );
+    });
+
+    it("should rerender when updating listNotifications prop with a longer list", () => {
+      notifications.setProps({
+        listNotifications: [{ id: 0, type: "urgent" }],
+      });
+      expect(Notifications.prototype.shouldComponentUpdate).toHaveReturnedWith(
+        true
+      );
+    });
+  });
 });
