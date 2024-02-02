@@ -4,15 +4,18 @@
 import WithLogging from "./WithLogging";
 import Login from "../Login/Login";
 import { mount } from "enzyme";
+import { StyleSheetTestUtils } from "aphrodite";
 
 describe("withLogging HOC", () => {
   beforeEach(() => {
     jest.spyOn(console, "log").mockImplementation(() => {});
+    StyleSheetTestUtils.suppressStyleInjection();
   });
 
   afterEach(() => {
     jest.clearAllMocks();
     jest.restoreAllMocks();
+    StyleSheetTestUtils.suppressStyleInjection();
   });
 
   describe("when the wrapped element is pure html", () => {
